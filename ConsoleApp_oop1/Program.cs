@@ -23,7 +23,7 @@ namespace ConsoleApp_oop1
             public int BuildingNumber { get; set; }
 
 
-            public DeliveryAddress (string City , string Street , int BuildingNumber) 
+            public DeliveryAddress(string City, string Street, int BuildingNumber)
             {
                 this.City = City;
                 this.Street = Street;
@@ -35,9 +35,88 @@ namespace ConsoleApp_oop1
             }
         }
 
-            #endregion
+        #endregion
+
+        #region Ceate a Shipment struct
+
+        public struct Shipment
+        {
+            private string _trackingCode;
+            private string _description;
+            private double _weight;
+            private decimal _deliveryFee;
+
+            public string TrackingCode
+            {
+                get => _trackingCode;
+
+                private set
+                {
+                    if (!string.IsNullOrWhiteSpace(value)) 
+                    _trackingCode = value;
+                }
+            }
+
+            public string Description
+            {
+                get => _description;
+
+                set
+                {
+                    if (!string.IsNullOrWhiteSpace(value)) 
+                    _description = value;
+
+                }
+            }
+            public double Weight
+            {
+                get => _weight;
+                set
+                {
+                    if (value > 0)
+                    {
+                        _weight = value;
+                    }
+
+
+                }
+
+
+            }
+            public decimal DeliveryFee
+            {
+             get => _deliveryFee;
+                private set
+                {
+                    if (value > 0)
+                    {
+                        _deliveryFee = value;
+                          
+
+                    }
+
+                }
+
+
+
+
+
+
+
+
+
+            }
+
+            public DeliveryAddress Destination { get; set;}
+
+            public decimal EstimatedCost 
+            { 
+            get => DeliveryFee + (decimal)(Weight * 5);
+            }
+
+
+        #endregion
+        }
 
     }
-        
-    
 }
